@@ -40,6 +40,15 @@
     </nav>
     <nav class="container">
       <h2>Solicitudes</h2>
+      <div class="btn-dng" style="padding-bottom: 15px;">
+        <button class="btn btn-danger" onClick="clearStorage()">Borrar Solicitudes</button>
+      </div>
+      <div id="delete-alert" class="alert alert-warning" style="display: none;">
+        Todas las solicitudes han sido eliminadas
+      </div>
+      <div style="padding-bottom: 15px;">
+        <input type="text" id="search" class="form-control" placeholder="Buscar solicitud">
+      </div>
       <div id="list" class="row">
       </div>
     </nav>

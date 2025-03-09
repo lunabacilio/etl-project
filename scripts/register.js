@@ -18,55 +18,87 @@ const inputOther = document.getElementById("otro");
 const inputFreq = document.getElementById("frecuencia");
 const inputPrior = document.getElementById("prioridad");
 
+let requests = JSON.parse(localStorage.getItem('requests')) || [];
+
 function register() {
-    // Crear array de fuentes seleccionadas
+    // Crear arreglo de fuentes seleccionadas
     let fuentes = [];
     if (inputFuente1.checked) fuentes.push(inputFuente1.value);
     if (inputFuente2.checked) fuentes.push(inputFuente2.value);
     if (inputFuente3.checked) fuentes.push(inputFuente3.value);
 
-    // Crear objeto
-    let newNewRequest = new newRequest(inputName.value, inputDesc.value, fuentes, inputOther.value, inputFreq.value, inputPrior.value);
-
-    // Desplegar el objeto
+    // Validar que se haya ingresado un nombre para la solicitud
     if (inputName.value == "") {
         alert("Por favor ingrese un nombre");
         return;
-    } else {
-        console.log(newNewRequest);
-        display(newNewRequest);
     }
+
+    // Crear un objeto de solicitud
+    const request = new newRequest(inputName.value, inputDesc.value, fuentes, inputOther.value, inputFreq.value, inputPrior.value);
+    //Agregar la solicitud al arreglo de solicitudes
+    requests.push(request);
+    //Guardar el arreglo de solicitudes en localStorage
+    localStorage.setItem('requests', JSON.stringify(requests));
+    // Mostrar mensaje de éxito
+    const alert = document.getElementById("success-alert");
+    alert.style.display = "block";
+    // Redirigir a requests-list.html
+    setTimeout(() => {
+        window.location.href = 'requests-list.html';
+    }, 5000);
 }
 
-function display(request) {
+function displayRequests() {
     const list = document.getElementById("list");
-    let fuentesHTML = '';
-    request.fuentes.forEach(fuente => {
-        fuentesHTML += `<p class="card-text">${fuente}</p>`;
-    });
-
-    const p = `
-    <div class="col-md-6 mb-3">
-      <div class="card" style="width: 100%;">
-        <div class="card-body">
-            <h5 class="card-title">${request.name}</h5>
-            <p class="card-text">${request.desc}</p>
-            ${fuentesHTML}
-            <p class="card-text">${request.other}</p>
-            <p class="card-text">${request.freq}</p>
-            <p class="card-text">${request.prior}</p>
-            <a href="#" class="card-link">Ver Detalles</a>
+    if (!list) return; // Si no existe el elemento, salir de la función
+    list.innerHTML = '';
+    requests.forEach((request, index) => {
+        let fuentesHTML = '';
+        request.fuentes.forEach(fuente => {
+            fuentesHTML += `<p class="card-text">${fuente}</p>`;
+        });
+        let requestElement = `
+        <div class="col-md-6 mb-3">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <div id="delete-req-alert" class="alert alert-danger" style="display: none;">
+                        Eliminando solicitud...
+                    </div>
+                    <h5 class="card-title">${request.name}</h5>
+                    <p class="card-text">${request.desc}</p>
+                    ${fuentesHTML}
+                    <p class="card-text">${request.other}</p>
+                    <p class="card-text">${request.freq}</p>
+                    <p class="card-text">${request.prior}</p>
+                    <a class="btn btn-danger" onclick="deleteRequest(${index})">Eliminar</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    `;
-    list.innerHTML += p;
+        `;
+        list.innerHTML += requestElement;
+    });
 }
 
-// Objetos de prueba
-let request1 = new newRequest("Solicitud 1", "Descripcion 1", ["Fuente 1", "Fuente 2", "Fuente 3"], "Otro", "Diaria", "Alta");
-let request2 = new newRequest("Solicitud 2", "Descripcion 2", ["Fuente 1", "Fuente 2", "Fuente 3"], "Otro", "Mensual", "Baja");
+// Función para eliminar una solicitud
+function deleteRequest(index) {
+    let requests = JSON.parse(localStorage.getItem('requests')) || [];
+    requests.splice(index, 1);
+    localStorage.setItem('requests', JSON.stringify(requests));
+    const deleteReqAlert = document.getElementById("delete-req-alert");
+    deleteReqAlert.style.display = "block";
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+}
 
-// Mostrar objetos de prueba
-display(request1);
-display(request2);
+function clearStorage() {
+    localStorage.clear();
+    requests = [];
+    const deleteAlert = document.getElementById("delete-alert");
+    deleteAlert.style.display = "block";
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+}
+
+document.addEventListener("DOMContentLoaded", displayRequests);
