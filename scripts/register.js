@@ -61,9 +61,6 @@ function displayRequests() {
         <div class="col-md-6 mb-3">
             <div class="card" style="width: 100%;">
                 <div class="card-body">
-                    <div id="delete-req-alert" class="alert alert-danger" style="display: none;">
-                        Eliminando solicitud...
-                    </div>
                     <h5 class="card-title">${request.name}</h5>
                     <p class="card-text">${request.desc}</p>
                     ${fuentesHTML}
@@ -91,6 +88,7 @@ function deleteRequest(index) {
     }, 2000);
 }
 
+// Función para limpiar el localStorage - Eliminar todas las solicitudes
 function clearStorage() {
     localStorage.clear();
     requests = [];

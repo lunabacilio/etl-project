@@ -6,7 +6,7 @@
 
 body {
     font-family: arial;
-    background-color: rgb(77, 77, 182);
+    background-color: #00723f;
 }
 
 p {
@@ -38,7 +38,7 @@ label {
 /* index */
 
 .text-center{
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
 .div-container{
