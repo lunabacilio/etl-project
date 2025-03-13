@@ -40,8 +40,8 @@ function register() {
     //Guardar el arreglo de solicitudes en localStorage
     localStorage.setItem('requests', JSON.stringify(requests));
     // Mostrar mensaje de éxito
-    const alert = document.getElementById("success-alert");
-    alert.style.display = "block";
+    const successAlert = document.getElementById("success-alert");
+    successAlert.style.display = "block";
     // Redirigir a requests-list.html
     setTimeout(() => {
         window.location.href = 'requests-list.html';
