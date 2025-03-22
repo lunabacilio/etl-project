@@ -39,9 +39,12 @@
       </div>
     </nav>
     
-    <div class="container">
+    <div class="container newrequest-container">
       <h2>Nueva Solicitud</h2>
-      <form>
+      <div id="success-alert" class="alert alert-success" role="alert" style="display: none;">
+        La solicitud fue registrada con éxito!
+      </div>
+      <form class="new-request-form" id="new-request-form">
         <div class="mb-3">
           <label>Nombre de dataset</label>
           <input type="text" class="form-control" id="nombreDataset">
@@ -92,15 +95,10 @@
             </select>
           </div>  
         </div>
+        <!--<a href="#" class="btn btn-primary mb-3 custom-button" onclick="register()">Registrar</a>-->
+        <button type="submit" class="register-button">Registrar</button>
       </form>
-      <div id="success-alert" class="alert alert-success" role="alert" style="display: none;">
-        La solicitud fue registrada con éxito, usted será redirigidor a la lista de solicitudes en 5 segundos.
-      </div>
-      <a href="#" class="btn btn-primary mb-3" onclick="register()">Submit</a>
-    <!--<div id="list" class="row">-->
-      <!--</div>-->
     </div>
-  </nav>
-  <script src="./scripts/register.js"></script>
+    <script src="./scripts/register.js"></script>
   </body>
 </html>
