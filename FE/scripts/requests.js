@@ -142,8 +142,6 @@ function clearAllRequests() {
     
     // Ask for confirmation
     if (confirm('¿Está seguro que desea eliminar todas las solicitudes?')) {
-        // In a real implementation, you would create an API endpoint to delete all requests
-        // For now, we'll delete each request individually
         fetch('../BE/requests_api.php', {
             method: 'GET',
         })

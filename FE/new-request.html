@@ -11,7 +11,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <img src="https://play-lh.googleusercontent.com/A4oCCHZnfOYiNNeORCEisV9ViFT1Mu3GjfJs0luNOMhKx0R9KVeuPtED8I0YGst0zoE=s48-rw" alt="">
+        <img src="images/cgib-logo.png" alt="">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,14 +46,14 @@
       </div>
       <form class="new-request-form" id="new-request-form">
         <div class="mb-3">
-          <label>Nombre de dataset</label>
+          <label>Nombre de dataset <span style="color: yellow;">*</span></label>
           <input type="text" class="form-control" id="nombreDataset">
         </div>
         <div class="mb-3">
-          <label>Descripción</label>
+          <label>Descripción <span style="color: yellow;">*</span> </label>
           <textarea class="form-control" id="descripcion"></textarea>
         </div>
-        <label>Selecciona tipo(s) de fuente(s) de datos</label>
+        <label>Selecciona tipo(s) de fuente(s) de datos <span style="color: yellow;">*</span></label>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="Base de datos" id="fuente1">
           <label class="form-check-label" for="fuente1">
@@ -73,13 +73,14 @@
           </label>
         </div>
         <div class="mb-3">
-          <label>Otro, especificar</label>
+          <label>Otro, especificar<span style="color: yellow;">*</span></label>
           <input type="text" class="form-control" id="otro">
         </div>
         <div class="row">
           <div class="col">
-            <select class="form-select mb-3" aria-label="Frequency" id="frecuencia">
-              <option selected>Selecciona la frecuencia de actualización</option>
+            <label for="frecuencia">Frecuencia de actualización <span style="color: yellow;">*</span></label>
+            <select class="form-select mb-3" id="frecuencia" required>
+              <option selected disabled value="">Selecciona una opción</option>
               <option value="Diaria">Diaria</option>
               <option value="Semanal">Semanal</option>
               <option value="Mensual">Mensual</option>
@@ -87,13 +88,14 @@
             </select>
           </div>
           <div class="col">
-            <select class="form-select mb-3" aria-label="Priority" id="prioridad">
-              <option selected>Prioridad</option>
+            <label for="prioridad">Prioridad <span style="color: yellow;">*</span></label>
+            <select class="form-select mb-3" id="prioridad" required>
+              <option selected disabled value="">Selecciona una opción</option>
               <option value="Alta">Alta</option>
               <option value="Media">Media</option>
               <option value="Baja">Baja</option>
             </select>
-          </div>  
+          </div>
         </div>
         <!--<a href="#" class="btn btn-primary mb-3 custom-button" onclick="register()">Registrar</a>-->
         <button type="submit" class="register-button">Registrar</button>

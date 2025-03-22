@@ -4,18 +4,21 @@ form.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form behavior
 
     // Get the values from the inputs
-    const name = document.getElementById('nombreDataset').value;
-    const descript = document.getElementById('descripcion').value;
-
-    // Get the values of the selected checkboxes
+    const name = document.getElementById('nombreDataset').value.trim();
+    const descript = document.getElementById('descripcion').value.trim();
     const fuentes = ['fuente1', 'fuente2', 'fuente3']
         .filter(id => document.getElementById(id).checked)
         .map(id => document.getElementById(id).value)
         .join(', ');
-
-    const inputOther = document.getElementById('otro').value;
+    const inputOther = document.getElementById('otro').value.trim();
     const inputFreq = document.getElementById('frecuencia').value;
     const inputPrior = document.getElementById('prioridad').value;
+
+    // Validate required fields
+    if (!name || !descript || !fuentes || inputFreq === 'Selecciona la frecuencia de actualización' || inputPrior === 'Prioridad') {
+        alert('Please fill in all required fields.');
+        return; // Stop form submission
+    }
 
     // Create the data object to send to the server
     const data = {
